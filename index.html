@@ -3,9 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <title>Mars Rover</title>
-  <script src="javascripts/app.js"></script>
-</head>
-<body>
-
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+      <title>Test Move Object</title>
+      <script type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+    <nav class="col controls">
+      <div class="col-vertical control-1 col">
+        <h1>Rover 1:</h1>
+        <button onclick="move('l', rover1)">Turn left</button>
+        <button onclick="move('r', rover1)">Turn right</button><br>
+        <button onclick="move('b', rover1)">Backward</button>
+        <button onclick="move('f', rover1)">Forward</button>
+        <div class="orientation"></div>
+      </div>
+      <div class="col-vertical col-middle control-2 col">
+        <h1>Rover 2:</h1>
+        <button onclick="move('l', rover2)">Turn left</button>
+        <button onclick="move('r', rover2)">Turn right</button><br>
+        <button onclick="move('b', rover2)">Backward</button>
+        <button onclick="move('f', rover2)">Forward</button>
+        <div class="orientation"></div>
+      </div>
+      <div class="col-vertical control-3 col">
+        <h1>Rover 3:</h1>
+        <button onclick="move('l', rover3)">Turn left</button>
+        <button onclick="move('r', rover3)">Turn right</button><br>
+        <button onclick="move('b', rover3)">Backward</button>
+        <button onclick="move('f', rover3)">Forward</button>
+        <div class="orientation"></div>
+      </div>
+      <div class="clearfix"></div>
+    </nav>
+    <section class="data col">
+      <div id="alert-text" class="col">
+        <p>Running</p>
+      </div>
+      <div class="map col">
+        <img id="image1" src="css/img/rover-1.png" style="position:relative;left:2px; top:0px;" height="35" width="35">
+        <img id="image2" src="css/img/rover-2.png" style="position:relative;left:325px; top:0px;" height="35" width="35">
+        <img id="image3" src="css/img/rover-3.png" style="position:relative;left:-75px; top:363px;" height="35" width="35">
+      </div>
+    </section>
+    <script src="javascripts/app.js"></script>
 </body>
 </html>

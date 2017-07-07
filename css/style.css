@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Titillium+Web:300,400,600');
+
+*{
+  margin:0;
+  padding: 0;
+  color: #2a324b;
+}
+body{
+  background:#e1e5ee;
+  font-family: 'Titillium Web', sans-serif;
+  width: 100%;
+}
+nav{
+  width: auto;
+  background: #2a324b;
+  height: auto;
+  margin:20px;
+}
+nav h1{
+  color: white;
+  margin-bottom: 20px;
+}
+section{
+  background: #e1e5ee;
+  width: auto;
+}
+.col{float: left;}
+.col-vertical{width: 300px;}
+.col-middle{margin: 50px 0;}
+.rover{
+  position:relative;
+  left:0;
+  top:0;
+  height: 15px;
+  width: 15px;
+}
+.map{
+  width: 400px;
+  height: 400px;
+  background: url("img/mars-map.jpg");
+  -webkit-box-shadow: inset 0px 0px 9px 0px rgba(48, 50, 50, 0.75);
+  -moz-box-shadow:    inset 0px 0px 9px 0px rgba(48, 50, 50, 0.75);
+  box-shadow:         inset 0px 0px 9px 0px rgba(48, 50, 50, 0.75);
+}
+.data{
+  width: 420px;
+  margin: 0px auto;
+  padding: 20px;
+}
+button{
+  background: #c7ccdb;
+  padding: 10px 20px;
+  border: 1px solid #2a324b;
+  text-transform: uppercase;
+  margin: 2px auto;
+  width: 100px;
+}
+button:focus{
+  background: #767b91;
+  outline: none;
+}
+#alert-text{
+  width: 360px;
+  background: white;
+  margin: 20px 0;
+  padding: 15px 20px;
+  -webkit-box-shadow: inset 0px 0px 2px 0px rgba(48, 50, 50, 0.75);
+  -moz-box-shadow:    inset 0px 0px 2px 0px rgba(48, 50, 50, 0.75);
+  box-shadow:         inset 0px 0px 2px 0px rgba(48, 50, 50, 0.75);
+}
+.controls{
+  padding: 30px 0;
+  width: 300px;
+  text-align: center;
+}
+.clearfix{clear: both;}

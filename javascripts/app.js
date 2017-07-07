@@ -1,5 +1,19 @@
 // Rover Object Goes Here
 // ======================
+var element = document.getElementById("image1");
+
+/*Function to choose the correct Rover*/
+function chooseRover(rover){
+  if (rover === rover1){
+    element = document.getElementById("image1");
+  }else if(rover === rover2){
+    element = document.getElementById("image2");
+  }else if(rover === rover3){
+    element = document.getElementById("image3");
+  }
+
+}
+
 var rover1={
   direction: "N",
   x: 0,
@@ -23,7 +37,7 @@ var rover3={
 };
 var board = [
   ['r1',' ',' ',' ',' ',' ',' ',' ',' ','r2'],
-  [' ','X',' ',' ',' ','X',' ',' ',' ',' '],
+  [' ','X',' ',' ',' ',' ','X',' ',' ',' '],
   [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
   [' ','X',' ','X',' ',' ',' ',' ',' ',' '],
   [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
@@ -40,25 +54,21 @@ console.log("Orientation r3: " + rover3.direction);
 
 
 function move(command, rover){
+  chooseRover(rover);
+  document.getElementById("alert-text").innerHTML="Running";
   for (var i = 0; i<command.length; i++){
       switch (command[i]){
         case "l":
           turnLeft(rover);
-          rover.travelLog.push([rover.x, rover.y]);
-          updateMap(rover);
           break;
         case "r":
           turnRight(rover);
-          rover.travelLog.push([rover.x, rover.y]);
-          updateMap(rover);
           break;
         case "f":
           moveForward(rover);
-          updateMap(rover);
           break;
         case "b":
           moveBackward(rover);
-          updateMap(rover);
           break;
         default:
           console.log("Nothing happens");
@@ -80,17 +90,26 @@ function turnLeft(rover){
   switch(rover.direction){
     case "N":
       rover.direction = "W";
+      element.style.transform = 'rotateZ(-90deg)';
+      rover.travelLog.push([rover.x, rover.y]);
     break;
     case "W":
       rover.direction = "S";
+      rover.travelLog.push([rover.x, rover.y]);
+      element.style.transform = 'rotateZ(180deg)';
     break;
     case "S":
       rover.direction = "E";
+      rover.travelLog.push([rover.x, rover.y]);
+      element.style.transform = 'rotateZ(90deg)';
     break;
     case "E":
       rover.direction = "N";
+      rover.travelLog.push([rover.x, rover.y]);
+      element.style.transform = 'rotateZ(0deg)';
     break;
   }
+  updateMap(rover);
   //console.log("Direction: " + rover.direction);
 }
 
@@ -99,17 +118,26 @@ function turnRight(rover){
   switch(rover.direction){
     case "N":
       rover.direction = "E";
+      rover.travelLog.push([rover.x, rover.y]);
+      element.style.transform = 'rotateZ(90deg)';
     break;
     case "E":
       rover.direction = "S";
+      rover.travelLog.push([rover.x, rover.y]);
+      element.style.transform = 'rotateZ(180deg)';
     break;
     case "S":
       rover.direction = "W";
+      rover.travelLog.push([rover.x, rover.y]);
+      element.style.transform = 'rotateZ(-90deg)';
     break;
     case "W":
       rover.direction = "N";
+      rover.travelLog.push([rover.x, rover.y]);
+      element.style.transform = 'rotateZ(0deg)';
     break;
   }
+  updateMap(rover);
   //console.log("Direction: " + rover.direction);
 }
 
@@ -124,6 +152,7 @@ function moveForward(rover){
       }else{
         rover.y -= 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.top = parseInt(element.style.top) - 40 + 'px';
       }
     break;
     case "S":
@@ -134,6 +163,7 @@ function moveForward(rover){
       }else{
         rover.y += 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.top = parseInt(element.style.top) + 40 + 'px';
       }
     break;
     case "W":
@@ -144,6 +174,7 @@ function moveForward(rover){
       }else{
         rover.x -= 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.left = parseInt(element.style.left) - 40 + 'px';
       }
     break;
     case "E":
@@ -154,9 +185,11 @@ function moveForward(rover){
       }else{
         rover.x += 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.left = parseInt(element.style.left) + 40 + 'px';
       }
     break;
   }
+  updateMap(rover);
   //console.log("Position: " + rover.x + "," +rover.y);
 
 }
@@ -172,6 +205,7 @@ function moveBackward(rover){
       }else{
         rover.y += 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.top = parseInt(element.style.top) + 40 + 'px';
       }
     break;
     case "S":
@@ -182,6 +216,7 @@ function moveBackward(rover){
       }else{
         rover.y -= 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.top = parseInt(element.style.top) - 40 + 'px';
       }
     break;
     case "W":
@@ -192,6 +227,7 @@ function moveBackward(rover){
       }else{
         rover.x += 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.left = parseInt(element.style.left) + 40 + 'px';
       }
     break;
     case "E":
@@ -202,25 +238,30 @@ function moveBackward(rover){
       }else{
         rover.x -= 1;
         rover.travelLog.push([rover.x, rover.y]);
+        element.style.left = parseInt(element.style.left) - 40 + 'px';
       }
     break;
   }
+  updateMap(rover);
   //console.log("Position: " + rover.x + "," +rover.y);
 
 }
 // Function to show boundary alert
 function showBoundary(){
   console.log("The robot cannot move forward! There is a boundary!");
+  document.getElementById("alert-text").innerHTML="The robot cannot move forward! There is a boundary!";
 }
 // Function to show obstacle alert
 function showObstacle(x,y){
   if(board[y][x] === "X"){
     console.log("Stop!! There's an obstacle!");
+    document.getElementById("alert-text").innerHTML="Stop!! There's an obstacle!";
   }else if(board[y][x] === "r1" || board[y][x] === "r2" || board[y][x] === "r3" ){
     console.log("Stop!! There's other Rover!");
+    document.getElementById("alert-text").innerHTML="Stop!! There's other Rover!";
   }
 }
-// Function to show the map
+// Function to show the map in console
 function showMap(){
   for (i = 0; i<board.length; i++){
     console.log(board[i]);
